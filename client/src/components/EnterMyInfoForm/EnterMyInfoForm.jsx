@@ -15,19 +15,16 @@ function EnterMyInfoForm({ bootcamper }) {
     }
   }
 
-  // if (!data) {
-  //   return null;
-  // }
-
   return (
     <div>
       <h2>Hello {bootcamper.name}!</h2>
-      <form action={updateMyInfo}>
+      <form action={"dummy_string"}>
         <label>
           What is your band name / performer name?
           <input
             type="text"
             name="bandName"
+            size="30"
             defaultValue={bootcamper.bandName}
             required
           />
@@ -38,6 +35,7 @@ function EnterMyInfoForm({ bootcamper }) {
           <input
             type="url"
             name="mp3url"
+            size="50"
             defaultValue={bootcamper.mp3url}
             required
           />
@@ -63,9 +61,11 @@ function EnterMyInfoForm({ bootcamper }) {
           <label htmlFor="false">No</label>
         </label>
         <br></br>
-        <label>
+        <br></br>
+        <label className="labelForTextArea">
           Do you have a message to display to fellow bootcampers after they have
           heard your music?
+          <br></br>
           <textarea
             name="message"
             rows="4"
@@ -80,6 +80,7 @@ function EnterMyInfoForm({ bootcamper }) {
           <input
             type="url"
             name="moreMusic"
+            size="50"
             defaultValue={bootcamper.moreMusic}
           />
         </label>
@@ -94,6 +95,8 @@ function EnterMyInfoForm({ bootcamper }) {
             required
           />
         </label>
+        <br></br>
+        <br></br>
         <button type="submit">submit</button>
       </form>
     </div>

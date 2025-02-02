@@ -15,10 +15,6 @@ function Submission({ bootcampers }) {
     setIsVerified(true);
   }
 
-  // if (!data) {
-  //   return null;
-  // }
-
   return isVerified ? (
     <EnterMyInfoForm bootcamper={bootcampers[0]}>
       The form for a verified bootcamper to enter their info will go here

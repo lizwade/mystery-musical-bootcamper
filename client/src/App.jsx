@@ -49,6 +49,11 @@ function App() {
   //  People pretending to be someone they're not (could selecting the name require a secret code, matched with each name, and dm it to each bootcamper?)
   //  People submitting more than once (could have a warning that a resubmission will overwrite. But if I'm using codes, could have a PUT endpoint to update?)
   //
+
+  //THIS IS THE CODE SNIPPET THAT MADE IT ALL WORK
+  //AND SOLVED THE ASYNC PROBLEM THAT WAS MAKING ALL THE CHILD COMPONENTS
+  //FAIL TO RENDER AND CRASH THE PROGRAM
+  //IT TOOK ME SO MANY HOURS TO WORK OUT WHAT I NEEDED TO DO
   if (bootcampers === null) {
     console.log("no data in bootcampers yet...");
     return <h2>loading!</h2>;
