@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --env-file .env server.js",
-    "dev": "node --watch server"
+    "dev": "node --env-file .env --watch server.js",
+    "reset-database": "node --env-file .env db/scripts/reset-database.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
   }
 }

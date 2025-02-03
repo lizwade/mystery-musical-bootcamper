@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Submission from "./components/Submission/Submission";
+import Header from "./components/Header/Header";
 import axios from "axios";
 
 function App() {
@@ -25,8 +26,12 @@ function App() {
   // };
 
   //Here is the one from the video tutorial
+  //TODO: Work out how to store / hide PORT. Should it be read here from the .env file? But that's on the server side.
+  //TODO: Consider refactoring to work with fetch() instead of using axios library
   const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:3022/api");
+    const PORT = 3018;
+    const address = `http://localhost:${PORT}/api`;
+    const response = await axios.get(address);
     console.log("hello from inside the fetchAPI function");
     console.log(response.data);
     setBootcampers(response.data);
@@ -40,16 +45,6 @@ function App() {
   //   setBootcampers(newData);
   // }
 
-  //Welcome!
-  //Message to explain the game and the purpose of this form
-  //
-  //Who are you?
-  //DROP DOWN MENU, data from bootcampers.name
-  //Potential issues:
-  //  People pretending to be someone they're not (could selecting the name require a secret code, matched with each name, and dm it to each bootcamper?)
-  //  People submitting more than once (could have a warning that a resubmission will overwrite. But if I'm using codes, could have a PUT endpoint to update?)
-  //
-
   //THIS IS THE CODE SNIPPET THAT MADE IT ALL WORK
   //AND SOLVED THE ASYNC PROBLEM THAT WAS MAKING ALL THE CHILD COMPONENTS
   //FAIL TO RENDER AND CRASH THE PROGRAM
@@ -60,12 +55,13 @@ function App() {
   }
 
   return (
-    //commenting this out just to try and get the data working!
-    //<h2>ready</h2>
-    <Submission
-      bootcampers={bootcampers}
-      //onSubmit={updateDatabase}
-    ></Submission>
+    <>
+      <Header id="header"></Header>
+      <Submission
+        bootcampers={bootcampers}
+        //onSubmit={updateDatabase}
+      ></Submission>
+    </>
   );
 }
 

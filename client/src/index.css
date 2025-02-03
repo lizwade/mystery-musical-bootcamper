@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Trilby, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +11,79 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  src: url('fonts/TrilbyVariable-VF-Edu.woff2') format("woff2"),
+    url('fonts/TrilbyVariable-VF-Edu.woff') format("woff");
+  font-family: 'TrilbyVariable';
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+@font-face {
+  src: url('fonts/Trilby-Regular-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-Regular-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  src: url('fonts/Trilby-Italic-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-Italic-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  src: url('fonts/Trilby-Medium-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-Medium-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  src: url('fonts/Trilby-MediumItalic-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-MediumItalic-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: italic;
+  font-weight: 500;
+}
+
+@font-face {
+  src: url('fonts/Trilby-Bold-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-Bold-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  src: url('fonts/Trilby-BoldItalic-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-BoldItalic-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+  src: url('fonts/Trilby-Black-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-Black-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  src: url('fonts/Trilby-BlackItalic-Edu.woff2') format("woff2"),
+    url('fonts/Trilby-BlackItalic-Edu.woff') format("woff");
+  font-family: 'Trilby';
+  font-style: italic;
+  font-weight: 900;
 }
 
 a {
@@ -34,7 +107,18 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-weight: 500;
 }
+
+h2 {
+  background-color: rgb(208, 175, 209);
+  color: rgb(208, 175, 209);
+}
+
+
+
+
+
 
 button {
   border-radius: 8px;
@@ -49,7 +133,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(255, 255, 255, 0.87);
 }
 
 button:focus,
@@ -68,6 +152,6 @@ button:focus-visible {
   }
 
   button {
-    background-color: #f9f9f9;
+    background-color: rgb(208, 175, 209);
   }
 }

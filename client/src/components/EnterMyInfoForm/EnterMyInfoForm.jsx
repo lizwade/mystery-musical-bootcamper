@@ -17,7 +17,7 @@ function EnterMyInfoForm({ bootcamper }) {
 
   return (
     <div>
-      <h2>Hello {bootcamper.name}!</h2>
+      <h3>Hello {bootcamper.name}!</h3>
       <form action={"dummy_string"}>
         <label>
           What is your band name / performer name?

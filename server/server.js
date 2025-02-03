@@ -1,31 +1,14 @@
 import express from "express";
 import cors from "cors";
 const app = express();
-const port = 3022;
+const PORT = process.env.PORT;
 
 //Here we list client addresses that are whitelisted to make requests to our server
 const corsOptions = {
   origin: ["http://localhost:5173"],
 };
 
-const musicians = [
-  {
-    name: "Beck",
-    genre: "alternative",
-    bestSong: "Hollow Log",
-  },
-  {
-    name: "Kendrick Lamar",
-    genre: "Hip-Hop",
-    bestSong: "Savior",
-  },
-  {
-    name: "Kate Bush",
-    genre: "Art Pop",
-    bestSong: "The Sensual World",
-  },
-];
-
+//dummy data, to be deleted once we are successfully retrieving from database
 const bootcampers = [
   {
     id: 1,
@@ -57,9 +40,9 @@ app.use(cors(corsOptions));
 
 // API routes
 app.get("/api", async (req, res) => {
-  res.json(bootcampers);
+  res.json(bootcampers); //currently causes the hardcoded data above to be served in the browser at http://localhost:3018/api
 });
 
-app.listen(port, () => {
-  console.log(`We are listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`We are listening on port ${PORT}`);
 });
