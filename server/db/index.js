@@ -1,4 +1,4 @@
-//THIS ENTIRE FILE COPIES FROM WEEK-5-CONNECTING-NODE-AND-POSTGRES
+//THIS ENTIRE FILE COPIED FROM WEEK-5-CONNECTING-NODE-AND-POSTGRES
 
 // Import the pg (node-postgres) library
 import pg from "pg";
@@ -18,6 +18,6 @@ export const pool = new pg.Pool({
   // Pass the connection string to the pool, so it knows how to connect to your database
   connectionString,
   ssl: {
-    rejectUnauthorized: false, // Use with caution
+    rejectUnauthorized: true, // Use false with caution
   },
 });

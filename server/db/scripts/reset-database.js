@@ -1,3 +1,5 @@
+// THIS CODE ADAPTED FROM SCHOOLOFCODE WEEK-5-CONNECTING-NODE-AND-POSTGRES
+//
 import { pool } from "../index.js";
 
 async function resetDatabase() {
@@ -14,7 +16,7 @@ async function resetDatabase() {
         id          INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         name        VARCHAR(20) NOT NULL,
         isFemale    BOOLEAN,
-        code        UUID --don't know how to specify this
+        code        uuid
       );
     `);
 
@@ -25,10 +27,10 @@ async function resetDatabase() {
         bootcamper_id   int references bootcampers(id),
         bandName        varchar(80),
         songName        varchar(80),
-        mp3url          url --??
-        isSinging       boolean
+        mp3url          varchar(255), --need to use regex to force this into url to an mp3?
+        isSinging       boolean,
         message         varchar(255),
-        moreMusic       url --??,
+        moreMusic       varchar(255), --regex for url?
         hasConsented    boolean
         
       );
@@ -40,7 +42,7 @@ async function resetDatabase() {
       VALUES 
         ('Adam', FALSE),
         ('Jacob', FALSE),
-        ('Ashton, FALSE),
+        ('Ashton', FALSE),
         ('Alistair', FALSE),
         ('Conner', FALSE),
         ('Kim', TRUE),
@@ -96,7 +98,9 @@ async function resetDatabase() {
             bootcamper_id
             )
       VALUES 
-        ('Messy Play', 'The Wetness', 'https://messyplay.bandcamp.com/track/the-wetness', TRUE, null, 'https://messyplay.bandcamp.com/album/messy-play', TRUE, 17 );
+        ('Messy Play', 'The Wetness', 'https://messyplay.bandcamp.com/track/the-wetness', TRUE, null, 'https://messyplay.bandcamp.com/album/messy-play', TRUE, 17 ),
+        ('The Made-up Band', 'You Dont Exist', 'https://nowhere.com/youdontexist.mp3', FALSE, 'I played guitar on this. Hear the duff note at the end!', 'https://www.madeup.com', TRUE, 11);
+        
         
     `);
 

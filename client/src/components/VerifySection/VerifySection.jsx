@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
-function VerifySection() {
+function VerifySection({ bootcamperNames }) {
+  // this prop is arriving as undefined?? Do we need to await something?
   function onClick() {}
+  console.log("reading bootcamperNames inside VerifySection");
+  console.log(bootcamperNames);
 
-  //code here for drop down menu, from mdn tutorial
-  // <select id="simple" name="simple">
-  //   <option>Banana</option>
-  //   <option selected>Cherry</option>
-  //   <option>Lemon</option>
-  // </select>;
+  console.log("The 0th element in bootcamper names is ");
+  console.log(bootcamperNames[0]);
 
+  // need to be able to generate the labels dynamically here, rather than pass them as literal text between the tags
   return (
     <form>
       <label>
         Who are you?
-        <input type="radio" name="name" id="Adam" />
-        <label htmlFor="Adam">Adam</label>
+        <input type="radio" name="name" id={bootcamperNames[0]} />
+        <label htmlFor={bootcamperNames[0]}>bootcamperNames[0]</label>
         <input type="radio" name="name" id="Kit" />
         <label htmlFor="Kit">Kit</label>
       </label>

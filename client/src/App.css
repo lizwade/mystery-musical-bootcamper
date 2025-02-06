@@ -10,8 +10,8 @@ body {
   color: rgb(255, 229, 210);
   height: 2em;
   padding: 0.5em;
-  /* will-change: filter;
-  transition: filter 300ms; */
+  will-change: filter;
+  transition: filter 300ms;
 
 }
 

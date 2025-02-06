@@ -1,6 +1,25 @@
 /* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function EnterMyInfoForm({ bootcamper }) {
+  let [songInfo, setSongInfo] = useState(null);
+
+  const readSongInfoIntoState = async () => {
+    const PORT = 3018;
+    const address = `http://localhost:${PORT}/songs/${bootcamper.id}`;
+    const response = await axios.get(address);
+    console.log(
+      "hello from inside the EnterMyInfoForm.jsx readSongInfoIntoState"
+    );
+    console.log(response.data.data);
+    setSongInfo(response.data.data);
+  };
+
+  useEffect(() => {
+    readSongInfoIntoState();
+  }, []);
+
   async function updateMyInfo(formData) {
     console.log("in the updateMyInfo function");
     const response = await fetch("/update", {
@@ -15,6 +34,11 @@ function EnterMyInfoForm({ bootcamper }) {
     }
   }
 
+  if (songInfo === null) {
+    console.log("no song data yet...");
+    return <></>;
+  }
+
   return (
     <div>
       <h3>Hello {bootcamper.name}!</h3>
@@ -25,7 +49,7 @@ function EnterMyInfoForm({ bootcamper }) {
             type="text"
             name="bandName"
             size="30"
-            defaultValue={bootcamper.bandName}
+            defaultValue={songInfo.bandname}
             required
           />
         </label>
@@ -36,7 +60,7 @@ function EnterMyInfoForm({ bootcamper }) {
             type="url"
             name="mp3url"
             size="50"
-            defaultValue={bootcamper.mp3url}
+            defaultValue={songInfo.mp3url}
             required
           />
         </label>
@@ -48,7 +72,7 @@ function EnterMyInfoForm({ bootcamper }) {
             name="isSinging"
             id="true"
             value="true"
-            defaultChecked={bootcamper.isSinging}
+            defaultChecked={songInfo.isSinging}
           />
           <label htmlFor="true">Yes</label>
           <input
@@ -56,7 +80,7 @@ function EnterMyInfoForm({ bootcamper }) {
             name="isSinging"
             id="false"
             value="false"
-            defaultChecked={!bootcamper.isSinging}
+            defaultChecked={!songInfo.isSinging}
           />
           <label htmlFor="false">No</label>
         </label>
@@ -71,7 +95,7 @@ function EnterMyInfoForm({ bootcamper }) {
             rows="4"
             cols="50"
             maxLength={200}
-            defaultValue={bootcamper.message}
+            defaultValue={songInfo.message}
           />
         </label>
         <br></br>
@@ -81,7 +105,7 @@ function EnterMyInfoForm({ bootcamper }) {
             type="url"
             name="moreMusic"
             size="50"
-            defaultValue={bootcamper.moreMusic}
+            defaultValue={songInfo.moremusic}
           />
         </label>
         <br></br>
