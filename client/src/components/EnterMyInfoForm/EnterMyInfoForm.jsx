@@ -49,7 +49,7 @@ function EnterMyInfoForm({ bootcamper }) {
             type="text"
             name="bandName"
             size="30"
-            defaultValue={songInfo.bandname}
+            defaultValue={songInfo.band_name}
             required
           />
         </label>
@@ -60,7 +60,7 @@ function EnterMyInfoForm({ bootcamper }) {
             type="url"
             name="mp3url"
             size="50"
-            defaultValue={songInfo.mp3url}
+            defaultValue={songInfo.mp3_url}
             required
           />
         </label>
@@ -72,7 +72,7 @@ function EnterMyInfoForm({ bootcamper }) {
             name="isSinging"
             id="true"
             value="true"
-            defaultChecked={songInfo.isSinging}
+            defaultChecked={songInfo.is_singing}
           />
           <label htmlFor="true">Yes</label>
           <input
@@ -80,7 +80,7 @@ function EnterMyInfoForm({ bootcamper }) {
             name="isSinging"
             id="false"
             value="false"
-            defaultChecked={!songInfo.isSinging}
+            defaultChecked={!songInfo.is_singing}
           />
           <label htmlFor="false">No</label>
         </label>
@@ -105,7 +105,7 @@ function EnterMyInfoForm({ bootcamper }) {
             type="url"
             name="moreMusic"
             size="50"
-            defaultValue={songInfo.moremusic}
+            defaultValue={songInfo.more_music}
           />
         </label>
         <br></br>

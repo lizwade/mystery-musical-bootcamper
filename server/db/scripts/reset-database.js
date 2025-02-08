@@ -15,7 +15,7 @@ async function resetDatabase() {
       CREATE TABLE bootcampers (
         id          INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         name        VARCHAR(20) NOT NULL,
-        isFemale    BOOLEAN,
+        is_female   BOOLEAN,
         code        uuid
       );
     `);
@@ -25,20 +25,20 @@ async function resetDatabase() {
       CREATE TABLE songs (
         id              SERIAL PRIMARY KEY,
         bootcamper_id   int references bootcampers(id),
-        bandName        varchar(80),
-        songName        varchar(80),
-        mp3url          varchar(255), --need to use regex to force this into url to an mp3?
-        isSinging       boolean,
-        message         varchar(255),
-        moreMusic       varchar(255), --regex for url?
-        hasConsented    boolean
+        band_name        varchar(80),
+        song_name        varchar(80),
+        mp3_url          varchar(255), --need to use regex to force this into url to an mp3?
+        is_Singing       boolean,
+        message          varchar(255),
+        more_music       varchar(255), --regex for url?
+        has_consented    boolean
         
       );
     `);
 
     // Seed the authors table
     await pool.query(`
-      INSERT INTO bootcampers (name, isFemale)
+      INSERT INTO bootcampers (name, is_female)
       VALUES 
         ('Adam', FALSE),
         ('Jacob', FALSE),
@@ -88,13 +88,13 @@ async function resetDatabase() {
     
 
       INSERT INTO songs (
-            bandName,
-            songName, 
-            mp3url,
-            isSinging,
+            band_name,
+            song_name, 
+            mp3_url,
+            is_singing,
             message,
-            moreMusic,
-            hasConsented,
+            more_music,
+            has_consented,
             bootcamper_id
             )
       VALUES 

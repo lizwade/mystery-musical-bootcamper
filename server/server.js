@@ -97,26 +97,28 @@ export async function getSongs(req, res) {
 
 export async function modifySongbyId(req, res) {
   try {
-    const songId = parseInt(req.params.id);
+    const song_id = parseInt(req.params.id);
     const {
-      bandName,
-      songName,
-      mp3url,
-      isSinging,
+      band_name,
+      song_name,
+      mp3_url,
+      is_singing,
       message,
-      moreMusic,
-      hasConsented,
+      more_music,
+      has_consented,
     } = req.body;
 
+    console.log(req.body);
+
     const song = await updateSongbyId(
-      songId,
-      bandName,
-      songName,
-      mp3url,
-      isSinging,
+      song_id,
+      band_name,
+      song_name,
+      mp3_url,
+      is_singing,
       message,
-      moreMusic,
-      hasConsented
+      more_music,
+      has_consented
     );
     res.status(200).json({ status: "success", payload: song });
   } catch (error) {

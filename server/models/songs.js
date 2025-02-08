@@ -19,14 +19,33 @@ export async function fetchAllSongs() {
   return result.rows;
 }
 
-// the below is hard-coded for now to songId 1 and bandname
-export async function updateSongbyId(songId) {
+export async function updateSongbyId(
+  song_id,
+  band_name,
+  song_name,
+  mp3_url,
+  is_singing,
+  message,
+  more_music,
+  has_consented
+) {
   console.log(
-    `in the SQL function attempting to updateSongById with song id ${songId}`
+    `in the SQL function attempting to updateSongById with song id ${song_id}`
   );
+
   const result = await pool.query(
-    "UPDATE songs SET bandname='Kate Bush' WHERE id=1"
+    "UPDATE songs SET band_name=$2, song_name=$3, mp3_url=$4, is_singing=$5, message=$6, more_music=$7, has_consented=$8 WHERE id=$1 RETURNING *",
+    [
+      song_id,
+      band_name,
+      song_name,
+      mp3_url,
+      is_singing,
+      message,
+      more_music,
+      has_consented,
+    ]
   );
   console.log("finished the UPDATE SQL statement");
-  return result;
+  return result.rows;
 }
