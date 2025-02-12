@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="src/styles.css" />
 </head>
 
+
 <body>
 <header>
     <h1>Mystery Musical Bootcamper</h1>
-    <h2>A guessing game</h2>
+    <h2>o</h2>
 </header>
 <h3>Hello!</h3>
-<form action="http://localhost:3018/submit_here" method="POST">
+<form id="submitSongForm" action="http://localhost:3018/submit_here" method="POST">
     <label>
         What is your band name / performer name?
         <input type="text" name="bandName" size="30" required />
@@ -67,8 +68,38 @@
 
     </form>
 
-  
+    <div>
+        <h3 id="responseMessage"></h3>
+    </div>
     
 </body>
+
+<script>
+    document.getElementById("submitSongForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data);
+    
+    try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            document.getElementById('responseMessage').textContent = "Got it! Thanks for submitting your song.";
+        } catch (error) {
+            document.getElementById('responseMessage').textContent = 'Error submitting form. Please try again.';
+        }
+    });
+
+
+</script>
 
 </html>
