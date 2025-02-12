@@ -23,8 +23,8 @@ async function resetDatabase() {
     // Create the songs table with a foreign key to the bootcampers table
     await pool.query(`
       CREATE TABLE songs (
-        id              SERIAL PRIMARY KEY,
-        bootcamper_id   int references bootcampers(id),
+        id               int generated always as identity PRIMARY KEY,
+        bootcamper_id    int references bootcampers(id),
         band_name        varchar(80),
         song_name        varchar(80),
         mp3_url          varchar(255), --need to use regex to force this into url to an mp3?
@@ -88,18 +88,18 @@ async function resetDatabase() {
     
 
       INSERT INTO songs (
+            bootcamper_id,
             band_name,
             song_name, 
             mp3_url,
             is_singing,
             message,
             more_music,
-            has_consented,
-            bootcamper_id
+            has_consented
             )
       VALUES 
-        ('Messy Play', 'The Wetness', 'https://messyplay.bandcamp.com/track/the-wetness', TRUE, null, 'https://messyplay.bandcamp.com/album/messy-play', TRUE, 17 ),
-        ('The Made-up Band', 'You Dont Exist', 'https://nowhere.com/youdontexist.mp3', FALSE, 'I played guitar on this. Hear the duff note at the end!', 'https://www.madeup.com', TRUE, 11);
+        (17, 'Messy Play', 'The Wetness', 'https://messyplay.bandcamp.com/track/the-wetness', TRUE, null, 'https://messyplay.bandcamp.com/album/messy-play', TRUE),
+        (11, 'The Made-up Band', 'You Dont Exist', 'https://nowhere.com/youdontexist.mp3', FALSE, 'I played guitar on this. Hear the duff note at the end!', 'https://www.madeup.com', TRUE);
         
         
     `);

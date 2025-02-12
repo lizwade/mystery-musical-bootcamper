@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mystery Musical Bootcamper</title>
+    <link rel="stylesheet" href="src/styles.css" />
+</head>
+
+<body>
+<header>
+    <h1>Mystery Musical Bootcamper</h1>
+    <h2>A guessing game</h2>
+</header>
+<h3>Hello!</h3>
+<form action="http://localhost:3018/submit_here" method="POST">
+    <label>
+        What is your band name / performer name?
+        <input type="text" name="bandName" size="30" required />
+    </label>
+    <br/>
+   
+    <label>
+        Please enter the url of the mp3 you want to submit for the game
+        <input type="url" name="mp3url" size="50" required />
+    </label>
+    <br/>
+    <label>
+        What's this track called?
+        <input type="text" name="songName" size="50" required />
+    </label>
+    <br />
+ 
+    <label>
+        Do you sing on this track?
+        <input type="radio" name="isSinging" id="true" value="true" required/>
+        <label htmlFor="true">Yes</label>
+        <input type="radio" name="isSinging" id="false" value="false" required/>
+        <label htmlFor="false">No</label>
+    </label>
+    <br/>
+    <br/>
+   
+    <label className="labelForTextArea">
+        Do you have a message to display to fellow bootcampers after they have
+        heard your music?
+        <br/>
+        
+        <textarea name="message" rows="4" cols="50" maxLength="200"></textarea> 
+                                            </label>
+                                <br/>
+                                <label>
+                                    Would you like to share a link to more of your music?
+                                    <input type="url" name="moreMusic" size="50" />
+                                </label>
+                                <br></br>
+                                <label>
+                                    I have the right to distribute this music and I consent to its use in
+                                    this game
+                                    <input type="checkbox" name="hasConsented" defaultValue="false" required />
+                                </label>
+                                
+                                
+                                <button type="submit">submit</button>
+
+    </form>
+
+  
+    
+</body>
+
+</html>

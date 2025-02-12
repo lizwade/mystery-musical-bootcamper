@@ -1,69 +1,41 @@
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
 
-//not sure if this is the right place to import this. I'm very confused about file structure and models vs controllers vs API
-import { fetchAllBootcampers } from "./models/bootcampers.js";
+//These CRUD methods with CRUD names are defined elsewhere
+import { READallBootcampers } from "./models/bootcampers.js";
 import {
-  fetchAllSongs,
-  fetchSongByBootcamperId,
-  updateSongbyId,
+  READallSongs,
+  READsongByBootcamperId,
+  UPDATEsongbyId,
+  CREATEsong,
 } from "./models/songs.js";
 
 const app = express();
 const PORT = process.env.PORT;
 
-//Here we list client addresses that are whitelisted to make requests to our server
-const corsOptions = {
-  origin: ["http://localhost:5173"],
-};
+// Middleware to parse the body of the request
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//dummy data, to be deleted once we are successfully retrieving from database
-// const bootcampers = [
-//   {
-//     id: 1,
-//     code: "25q3",
-//     name: "Kit",
-//     isFemale: false,
-//     bandName: "The Forgotten",
-//     mp3url: "http://something.mp3",
-//     isSinging: false,
-//     message: "Hope you like it!",
-//     moreMusic: "http://bandcamp.com/fab",
-//     hasConsented: true,
-//   },
-//   {
-//     id: 2,
-//     code: "6yP0",
-//     name: "Adam",
-//     isFemale: false,
-//     bandName: null,
-//     mp3url: null,
-//     isSinging: null,
-//     message: null,
-//     moreMusic: null,
-//     hasConsented: false,
-//   },
-// ];
+const corsOptions = {
+  origin: ["http://localhost:5173"], // client addresses that are whitelisted to make requests to our server
+};
 
 app.use(cors(corsOptions));
 app.use(express.json()); //not sure if we need this but the SoC has this line in...
 
-// API routes
-// app.get("/api", async (req, res) => {
-//   //res.json(bootcampers); //this causes the hardcoded data above to be served in the browser at http://localhost:3018/api
-//   //can we just swap out the variable above and swap in the function fetchAllBootcampers??
-//   bootcampers = res.json(fetchAllBootcampers());
-// });
-
-app.get("/bootcampers", getBootcampers);
-app.get("/songs/:id", getSongByBootcamperId);
-app.get("/songs", getSongs);
-//app.post("/songs", createSong);
+//set up the routes with API methods, and then define those methods below
+app.get("/bootcampers", getBootcampers); //front end doesn't need to GET this
+app.get("/songs/:id", getSongByBootcamperId); //front end doesn't need to GET this
+app.get("/songs", getSongs); //front end doesn't need to GET this
+app.post("/submit_here", (req, res) => {
+  handleSubmitSong(req, res, 7); //currently hardcoded to submit a song for a specific bootcamper - this can only succeed once
+});
 app.put("/songs/:id", modifySongbyId);
 
 export async function getBootcampers(req, res) {
   try {
-    const bootcampers = await fetchAllBootcampers();
+    const bootcampers = await READallBootcampers();
     res.status(200).json({ status: "success", data: bootcampers });
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
@@ -72,7 +44,7 @@ export async function getBootcampers(req, res) {
 
 export async function getSongByBootcamperId(req, res) {
   try {
-    const song = await fetchSongByBootcamperId(parseInt(req.params.id));
+    const song = await READsongByBootcamperId(parseInt(req.params.id));
     if (!song) {
       res
         .status(404)
@@ -88,7 +60,7 @@ export async function getSongByBootcamperId(req, res) {
 
 export async function getSongs(req, res) {
   try {
-    const songs = await fetchAllSongs();
+    const songs = await READallSongs();
     res.status(200).json({ status: "success", data: songs });
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
@@ -110,7 +82,7 @@ export async function modifySongbyId(req, res) {
 
     console.log(req.body);
 
-    const song = await updateSongbyId(
+    const song = await UPDATEsongbyId(
       song_id,
       band_name,
       song_name,
@@ -119,6 +91,37 @@ export async function modifySongbyId(req, res) {
       message,
       more_music,
       has_consented
+    );
+    res.status(200).json({ status: "success", payload: song });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+}
+
+//takes in a bootcamper_id and the info from form to create a new record
+export async function handleSubmitSong(req, res, bootcamperId) {
+  try {
+    const {
+      bandName,
+      songName,
+      mp3url,
+      isSinging,
+      message,
+      moreMusic,
+      hasConsented,
+    } = req.body;
+
+    console.log(req.body);
+
+    const song = await CREATEsong(
+      bootcamperId,
+      bandName,
+      songName,
+      mp3url,
+      isSinging,
+      message,
+      moreMusic,
+      hasConsented
     );
     res.status(200).json({ status: "success", payload: song });
   } catch (error) {

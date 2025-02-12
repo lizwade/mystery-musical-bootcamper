@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+//import "./App.css";
 import Submission from "./components/Submission/Submission";
 import Header from "./components/Header/Header";
 import axios from "axios";
