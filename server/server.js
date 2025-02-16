@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
+import session from "express-session"; //do i need this?
+import passport from "./config/passportConfig.js";
 import bodyParser from "body-parser";
+import authRoutes from "./routes/auth.js";
 
 //These CRUD methods with CRUD names are defined elsewhere
 import { READallBootcampers } from "./models/bootcampers.js";
@@ -24,12 +27,34 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json()); //not sure if we need this but the SoC has this line in...
 
+app.use("/auth", authRoutes);
+
+//here is the middleware suggested by copilot to make the passport work
+app.use(
+  session({
+    secret: "your_secret_key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/submit",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
+
 //set up the routes with API methods, and then define those methods below
 app.get("/bootcampers", getBootcampers); //front end doesn't need to GET this
 app.get("/songs/:id", getSongByBootcamperId); //front end doesn't need to GET this
 app.get("/songs", getSongs); //front end doesn't need to GET this
 app.post("/submit_here", (req, res) => {
-  handleSubmitSong(req, res, 7); //currently hardcoded to submit a song for a specific bootcamper - this can only succeed once
+  handleSubmitSong(req, res, 7); //currently hardcoded to submit a song for a specific bootcamper
 });
 app.put("/songs/:id", modifySongbyId);
 

@@ -14,7 +14,7 @@ async function resetDatabase() {
     await pool.query(`
       CREATE TABLE bootcampers (
         id          INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        name        VARCHAR(20) NOT NULL,
+        first_name        VARCHAR(20) NOT NULL,
         is_female   BOOLEAN,
         code        uuid
       );
@@ -38,7 +38,7 @@ async function resetDatabase() {
 
     // Seed the authors table
     await pool.query(`
-      INSERT INTO bootcampers (name, is_female)
+      INSERT INTO bootcampers (first_name, is_female)
       VALUES 
         ('Adam', FALSE),
         ('Jacob', FALSE),

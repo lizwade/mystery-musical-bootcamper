@@ -6,7 +6,7 @@ import EnterMyInfoForm from "../EnterMyInfoForm/EnterMyInfoForm";
 function Submission({ bootcampers }) {
   const [isVerified, setIsVerified] = useState(true); //this needs to persist across re-renders, but only for one session?
 
-  const bootcamperNames = bootcampers.map((b) => b.name);
+  const bootcamperNames = bootcampers.map((b) => b.first_name);
   typeof bootcamperNames;
   console.log("This is bootcamperNames:");
   console.log(bootcamperNames);
