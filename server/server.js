@@ -24,7 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet()); //TODO: set some helmet parameters
 
 const corsOptions = {
-  origin: ["http://localhost:5173"], // client addresses that are whitelisted to make requests to our server
+  origin: [
+    "http://localhost:5173",
+    "https://mystery-musical-bootcamper-client.vercel.app",
+  ], // client addresses that are whitelisted to make requests to our server
 };
 
 app.use(cors(corsOptions));

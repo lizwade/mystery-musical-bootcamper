@@ -1,21 +1,25 @@
 import React from "react";
 
-interface Bootcamper {
-  firstName: String;
-  id: Number;
-}
+// interface Bootcamper {
+//   firstName: String;
+//   id: Number;
+// }
 
-interface StatementProps {
-  bootcampers: Bootcamper;
-}
+// interface StatementProps {
+//   bootcampers: Bootcamper;
+// }
 
-function Statement(props: StatementProps ) {
-  const { firstName, id } = props.bootcampers; 
-  return (
+function Statement({user} ) {
+  //const { firstName, id } = props.bootcampers; 
+  return (<>
     <p>
-      I'm {firstName} and I do / don't have am mp3 of music I've made that I'm
-      happy to upload for the game
+      I'm {user} and I do / don't have an mp3
+      of music I've made I can add to the game
     </p>
+    <p>My one-time code is
+    <input type="text"/>
+    <button>Save my response</button> </p>
+    </>
   );
 }
 

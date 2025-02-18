@@ -10,6 +10,7 @@ function App() {
   //So it can be passed either to Submission for amendment
   //Or Game for use in playing the game
   let [bootcampers, setBootcampers] = useState(null);
+  let [user, setUser] = useState("");
 
   //Here is the one from the video tutorial
   //TODO: Work out how to store / hide PORT. Should it be read here from the .env file? But that's on the server side.
@@ -44,9 +45,9 @@ function App() {
       <Header id="header"></Header>
       <PianoDropdown
         bootcampers={bootcampers}
-        //onSubmit={updateDatabase}
+        pushUserToParent={setUser}
       ></PianoDropdown>
-      <Statement bootcampers={bootcampers}></Statement>
+      <Statement user={user}></Statement>
     </>
   );
 }

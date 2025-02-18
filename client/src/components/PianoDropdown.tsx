@@ -4,16 +4,18 @@ import React, {useState} from "react";
 //   names: string[];
 // }
 
-function PianoDropdown({bootcampers}) {
+function PianoDropdown({bootcampers, pushUserToParent}, ) {
   //const { firstName: names, id } = bootcampers;
   //const { names } = props;
   
   const [selectedName, setSelectedName] = useState("");
 
   const names = bootcampers.map((b) => b.first_name);
-  typeof names;
-  console.log("This is names:");
-  console.log(names);
+  //I feel like the above job should be done before we pass in the props,
+  //maybe by the function that calls the SQL? or a middleman function?
+  //because having it inside the compponent means it is remapped on every re-render
+  //which is every mouse move!
+
 
   const whiteKeyCount = 24;
   const blackKeyPositions = [
@@ -22,7 +24,7 @@ function PianoDropdown({bootcampers}) {
 
   return (
     <div className="piano-dropdown">
-      <div className="display-panel">{selectedName || "Hover over keys"}</div>
+      <div className="display-panel">{selectedName || "."}</div>
       <div className="piano-keyboard">
         <div className="white-keys">
           {names.slice(0, whiteKeyCount).map((name, index) => (
@@ -30,6 +32,7 @@ function PianoDropdown({bootcampers}) {
               key={index}
               className="white-key"
               onMouseEnter={() => setSelectedName(name)}
+              onClick={() => pushUserToParent(name)}
             ></div>
           ))}
         </div>
@@ -42,6 +45,8 @@ function PianoDropdown({bootcampers}) {
                 left: `calc(${(position / whiteKeyCount) * 100}% - 1.5%)`,
               }}
               onMouseEnter={() => setSelectedName(names[whiteKeyCount + index])}
+              onClick={() => pushUserToParent(names[whiteKeyCount + index])}
+              
             ></div>
           ))}
         </div>
