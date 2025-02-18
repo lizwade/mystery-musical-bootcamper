@@ -13,10 +13,11 @@ async function resetDatabase() {
     // Create the bootcampers table
     await pool.query(`
       CREATE TABLE bootcampers (
-        id          INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        id                INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         first_name        VARCHAR(20) NOT NULL,
-        is_female   BOOLEAN,
-        code        uuid
+        is_female         BOOLEAN,
+        code              uuid,
+        will_submit       BOOLEAN DEFAULT NULL
       );
     `);
 
@@ -24,7 +25,7 @@ async function resetDatabase() {
     await pool.query(`
       CREATE TABLE songs (
         id               int generated always as identity PRIMARY KEY,
-        bootcamper_id    int references bootcampers(id),
+        bootcamper_id    int references bootcampers(id) UNIQUE,
         band_name        varchar(80),
         song_name        varchar(80),
         mp3_url          varchar(255), --need to use regex to force this into url to an mp3?

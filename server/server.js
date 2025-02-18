@@ -4,6 +4,7 @@ import session from "express-session"; //do i need this?
 import passport from "./config/passportConfig.js";
 import bodyParser from "body-parser";
 import authRoutes from "./routes/auth.js";
+import helmet from "helmet";
 
 //These CRUD methods with CRUD names are defined elsewhere
 import { READallBootcampers } from "./models/bootcampers.js";
@@ -19,6 +20,8 @@ const PORT = process.env.PORT;
 
 // Middleware to parse the body of the request
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(helmet()); //TODO: set some helmet parameters
 
 const corsOptions = {
   origin: ["http://localhost:5173"], // client addresses that are whitelisted to make requests to our server

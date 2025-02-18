@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   src: url('fonts/TrilbyVariable-VF-Edu.woff2') format("woff2"),
     url('fonts/TrilbyVariable-VF-Edu.woff') format("woff");
   font-family: 'TrilbyVariable';
@@ -21,7 +21,7 @@
   font-family: 'Trilby';
   font-style: italic;
   font-weight: normal;
-}
+} */
 
 @font-face {
   src: url('fonts/Trilby-Medium-Edu.woff2') format("woff2"),
@@ -39,6 +39,7 @@
   font-weight: 500;
 }
 
+/* 
 @font-face {
   src: url('fonts/Trilby-Bold-Edu.woff2') format("woff2"),
     url('fonts/Trilby-Bold-Edu.woff') format("woff");
@@ -69,7 +70,7 @@
   font-family: 'Trilby';
   font-style: italic;
   font-weight: 900;
-}
+} */
 
 :root {
   font-family: Trilby, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

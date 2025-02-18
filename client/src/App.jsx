@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 //import "./App.css";
-import Submission from "./components/Submission/Submission";
+import Statement from "./components/Statement";
 import Header from "./components/Header/Header";
 import axios from "axios";
+import PianoDropdown from "./components/PianoDropdown";
 
 function App() {
   //The data needs to be fetched and held (as state?) at this level
@@ -20,8 +21,9 @@ function App() {
     console.log(
       "hello from inside the App.jsx readBootcampersIntoState function"
     );
-    console.log(response.data);
-    setBootcampers(response.data);
+    console.log("response.data.data looks like this:");
+    console.log(response.data.data);
+    setBootcampers(response.data.data);
   };
 
   useEffect(() => {
@@ -40,10 +42,11 @@ function App() {
   return (
     <>
       <Header id="header"></Header>
-      <Submission
-        bootcampers={bootcampers.data}
+      <PianoDropdown
+        bootcampers={bootcampers}
         //onSubmit={updateDatabase}
-      ></Submission>
+      ></PianoDropdown>
+      <Statement bootcampers={bootcampers}></Statement>
     </>
   );
 }
